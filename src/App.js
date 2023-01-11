@@ -32,7 +32,8 @@ function App() {
 		setError(null);
 
 		try {
-			const response = await fetch('https://swapi.dev/api/films/');
+			// /movies.json will create a "movies" node in firebase, due to this it's required to attach this part to the url
+			const response = await fetch('https://react-http-9c568-default-rtdb.europe-west1.firebasedatabase.app/movies.json');
 		
 			if(!response.ok) {
 				throw new Error('Bad API url');
@@ -64,8 +65,17 @@ function App() {
 		fetchMoviesHandler();
 	}, [fetchMoviesHandler]);
 
-	const addMovieHandler = movie => {
-		console.log(movie);
+	// send post request to firebase
+	const addMovieHandler = async (movie) => {
+		const response = await fetch('https://react-http-9c568-default-rtdb.europe-west1.firebasedatabase.app', {
+			method: 'POST',
+			body: movie,
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		console.log(response);
 	};
 
 	let content = <p> No movies found.</p>;
