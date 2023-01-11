@@ -64,6 +64,10 @@ function App() {
 		fetchMoviesHandler();
 	}, [fetchMoviesHandler]);
 
+	const addMovieHandler = movie => {
+		console.log(movie);
+	};
+
 	let content = <p> No movies found.</p>;
 
 	if(movies.length > 0) {
@@ -81,7 +85,7 @@ function App() {
   return (
     <React.Fragment>
 	  	<section>
-		  	<AddMovie />
+		  	<AddMovie onAddMovie={addMovieHandler} />
 		</section>
 		<section>
 			<button onClick={fetchMoviesHandler}>Fetch Movies</button>
