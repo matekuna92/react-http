@@ -13,7 +13,7 @@ const AddMovie = (props) => {
         const movie = {
             title: titleRef.current.value,
             text: textRef.current.value,
-            dateRef: dateRef.current.value
+            date: dateRef.current.value
         }
 
         props.onAddMovie(movie);
